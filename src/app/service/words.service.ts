@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,15 +40,18 @@ export class WordsService {
     localStorage.getItem('wordsList') || JSON.stringify(this.defaultWords)
   );
 
+  wordsSubject = new BehaviorSubject(this.wordsList);
+
   constructor() {}
 
-  private setLocalStorageValues() {
+  private setValues() {
     localStorage.setItem('wordsList', JSON.stringify(this.wordsList));
+    this.wordsSubject.next(this.wordsList);
   }
 
   addWord(word: string) {
     this.wordsList.push(word);
-    this.setLocalStorageValues();
+    this.setValues();
   }
 
   removeWord(word: string) {
@@ -55,12 +59,12 @@ export class WordsService {
 
     if (index > -1) {
       this.wordsList.splice(index, 1);
-      this.setLocalStorageValues();
+      this.setValues();
     }
   }
 
   resetWordsToDefault() {
     this.wordsList = this.defaultWords;
-    this.setLocalStorageValues();
+    this.setValues();
   }
 }
