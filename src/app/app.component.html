@@ -1,6 +1,11 @@
 <app-header></app-header>
-<main class="main-container">
-  <div>Students</div>
-  <div>Word selected</div>
-  <app-words-list></app-words-list>
-</main>
+
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Main"> <main class="main-container">Main</main> </mat-tab>
+  <mat-tab label="Words">
+    <main class="main-container"><app-words-list></app-words-list></main
+  ></mat-tab>
+  <mat-tab label="Students"
+    ><main class="main-container">Students</main></mat-tab
+  >
+</mat-tab-group>
