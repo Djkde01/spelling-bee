@@ -1,0 +1,18 @@
+<div mat-dialog-content>
+  <p>New word</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Add new word</mat-label>
+    <input matInput [(ngModel)]="data.word" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [mat-dialog-close]="data.word"
+    cdkFocusInitial
+  >
+    Add
+  </button>
+</div>

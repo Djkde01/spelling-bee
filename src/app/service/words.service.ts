@@ -44,18 +44,24 @@ export class WordsService {
 
   constructor() {}
 
+  private capitalizeString(text: string) {
+    const lower = text.toLowerCase();
+
+    return text.charAt(0).toUpperCase() + lower.slice(1);
+  }
+
   private setValues() {
     localStorage.setItem('wordsList', JSON.stringify(this.wordsList));
     this.wordsSubject.next(this.wordsList);
   }
 
   addWord(word: string) {
-    this.wordsList.push(word);
+    this.wordsList.push(this.capitalizeString(word));
     this.setValues();
   }
 
   removeWord(word: string) {
-    const index = this.wordsList.indexOf(word);
+    const index = this.wordsList.indexOf(this.capitalizeString(word));
 
     if (index > -1) {
       this.wordsList.splice(index, 1);

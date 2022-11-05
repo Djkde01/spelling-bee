@@ -7,3 +7,16 @@ table
   &-icon
     text-align: center
     cursor: pointer
+
+.words-topbar
+  display: flex
+  justify-content: space-between
+  margin: 2rem auto
+  &-buttons
+    display: flex
+    gap: 16px
+    @media (max-width: 320px)
+      flex-direction: column
+  @media (max-width: 320px)
+    flex-direction: column
+    gap: 16px

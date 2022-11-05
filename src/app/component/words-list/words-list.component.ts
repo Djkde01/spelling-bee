@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { WordsService } from 'src/app/service/words.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { WordDialogComponent } from '../word-dialog/word-dialog.component';
 
 @Component({
   selector: 'app-words-list',
@@ -15,21 +17,42 @@ export class WordsListComponent implements OnInit {
 
   constructor(
     private wordsService: WordsService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   removeWord(word: string) {
     this.wordsService.removeWord(word);
-    this.openNotification(word);
+    this.openNotification(word, 'removed');
   }
 
-  openNotification(word: string) {
-    let snackBarRef = this._snackBar.open(`Word "${word}" removed`, 'Undo', {
+  openNotification(word: string, action: string) {
+    let snackBarRef = this._snackBar.open(`Word "${word}" ${action}`, 'Undo', {
       duration: 3000,
     });
     snackBarRef.onAction().subscribe(() => {
-      this.wordsService.addWord(word);
+      action === 'removed'
+        ? this.wordsService.addWord(word)
+        : this.wordsService.removeWord(word);
     });
+  }
+
+  openDialog(): void {
+    let newWord: string = '';
+
+    const dialogRef = this.dialog.open(WordDialogComponent, {
+      width: '250px',
+      data: { word: newWord },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.wordsService.addWord(result);
+      this.openNotification(result, 'added');
+    });
+  }
+
+  restoreDefaultWords(): void {
+    this.wordsService.resetWordsToDefault();
   }
 
   ngOnInit(): void {
