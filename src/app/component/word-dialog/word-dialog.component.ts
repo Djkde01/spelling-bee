@@ -6,7 +6,7 @@ import {
 } from '@angular/material/dialog';
 
 interface dataModel {
-  word: string;
+  entry: string;
 }
 @Component({
   selector: 'app-word-dialog',

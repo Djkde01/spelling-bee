@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmationDialogComponent } from './component/confirmation-dialog/confirmation-dialog.component';
+import { ParticipantsListComponent } from './component/participants-list/participants-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ConfirmationDialogComponent } from './component/confirmation-dialog/con
     HeaderComponent,
     WordDialogComponent,
     ConfirmationDialogComponent,
+    ParticipantsListComponent,
   ],
   imports: [
     MatToolbarModule,

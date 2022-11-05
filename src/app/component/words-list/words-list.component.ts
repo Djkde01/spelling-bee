@@ -43,7 +43,7 @@ export class WordsListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(WordDialogComponent, {
       width: '250px',
-      data: { word: newWord },
+      data: { entry: newWord },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
