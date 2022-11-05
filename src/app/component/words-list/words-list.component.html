@@ -2,10 +2,14 @@
   <div class="words-topbar">
     <h1>Word list ({{ wordsList.data.length }})</h1>
     <div class="words-topbar-buttons">
-      <button mat-flat-button color="primary" (click)="restoreDefaultWords()">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openDefaultWordsDialog()"
+      >
         Restore default words
       </button>
-      <button mat-flat-button color="primary" (click)="openDialog()">
+      <button mat-flat-button color="primary" (click)="openNewWordDialog()">
         Add word
       </button>
     </div>

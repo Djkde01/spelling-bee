@@ -4,6 +4,7 @@ import { WordsService } from 'src/app/service/words.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { WordDialogComponent } from '../word-dialog/word-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-words-list',
@@ -37,7 +38,7 @@ export class WordsListComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openNewWordDialog(): void {
     let newWord: string = '';
 
     const dialogRef = this.dialog.open(WordDialogComponent, {
@@ -51,8 +52,10 @@ export class WordsListComponent implements OnInit {
     });
   }
 
-  restoreDefaultWords(): void {
-    this.wordsService.resetWordsToDefault();
+  openDefaultWordsDialog(): void {
+    this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+    });
   }
 
   ngOnInit(): void {
